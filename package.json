@@ -15,6 +15,6 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha ./tests/app.test.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon ./src/app.js"
   }
 }
