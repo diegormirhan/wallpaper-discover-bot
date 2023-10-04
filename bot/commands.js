@@ -31,25 +31,29 @@ bot.onText(/\/help/, function helpCommand(msg) {
 // Create a /portrait-random command
 bot.onText(/\/portrait-random/, function portraitRandomCommand(msg) {
     const chatId = msg.chat.id
-    portraitRandom(bot, chatId)
+    bot.sendMessage(chatId, 'Under development...')
+    //portraitRandom(bot, chatId)
 })
 
 // Create a /landscape-random command
 bot.onText(/\/landscape-random/, function landscapeRandomCommand(msg) {
     const chatId = msg.chat.id
-    landscapeRandom(bot, chatId)
+    bot.sendMessage(chatId, 'Under development...')
+    // landscapeRandom(bot, chatId)
 })
 
 // Create a /query-options command
 bot.onText(/\/query-option/, function queryOptionsCommand(msg) {
     const chatId = msg.chat.id
-    queryOptions(bot, chatId)
+    bot.sendMessage(chatId, 'Under development...')
+    // queryOptions(bot, chatId)
 })
 
 // Create a /query-search command
 bot.onText(/\/query-search/, function querySearchCommand(msg) {
     const chatId = msg.chat.id
-    querySearch(bot, chatId)
+    bot.sendMessage(chatId, 'Under development...')
+    // querySearch(bot, chatId)
 })
 
 // Create a /update command
