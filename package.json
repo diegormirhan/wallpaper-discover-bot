@@ -5,6 +5,7 @@
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "fastify": "^4.23.0",
+    "mongodb": "^6.1.0",
     "node-telegram-bot-api": "^0.63.0",
     "unsplash-js": "^7.0.18"
   },
