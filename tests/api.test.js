@@ -2,12 +2,16 @@ require('dotenv').config()
 const axios = require('axios')
 
 const acess_key = process.env.UNSPLASH_ACESS_KEY
-const apiUrl = 'https://api.unsplash.com/photos'
+const apiUrl = 'https://api.unsplash.com/photos/random'
 
 const options = {
     headers: {
       'Accept-Version': 'v1',
       'Authorization': `Client-ID ${acess_key}`
+    },
+    params: {
+      count: 5,
+      orientation: 'landscape'
     }
   };
 
