@@ -24,33 +24,33 @@ bot.onText(/\/start/, function startCommand(msg) {
 // Create a /help command
 bot.onText(/\/help/, function helpCommand(msg) {
     const chatId = msg.chat.id
-    const message = "test"
+    const message = "Under development..."
     bot.sendMessage(chatId, message, {parse_mode: 'Markdown'})
 })
 
 // Create a /portrait-random command
-bot.onText(/\/portrait-random/, function portraitRandomCommand(msg) {
+bot.onText(/\/portrait_random/, function portraitRandomCommand(msg) {
     const chatId = msg.chat.id
     bot.sendMessage(chatId, 'Under development...')
     //portraitRandom(bot, chatId)
 })
 
 // Create a /landscape-random command
-bot.onText(/\/landscape-random/, function landscapeRandomCommand(msg) {
+bot.onText(/\/landscape_random/, function landscapeRandomCommand(msg) {
     const chatId = msg.chat.id
     bot.sendMessage(chatId, 'Under development...')
     // landscapeRandom(bot, chatId)
 })
 
 // Create a /query-options command
-bot.onText(/\/query-option/, function queryOptionsCommand(msg) {
+bot.onText(/\/query_option/, function queryOptionsCommand(msg) {
     const chatId = msg.chat.id
     bot.sendMessage(chatId, 'Under development...')
     // queryOptions(bot, chatId)
 })
 
 // Create a /query-search command
-bot.onText(/\/query-search/, function querySearchCommand(msg) {
+bot.onText(/\/query_search/, function querySearchCommand(msg) {
     const chatId = msg.chat.id
     bot.sendMessage(chatId, 'Under development...')
     // querySearch(bot, chatId)
