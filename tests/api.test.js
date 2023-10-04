@@ -17,7 +17,7 @@ const options = {
 
 axios.get(apiUrl, options)
     .then(response => {
-        console.log(response.data);
+        console.log(response.data[0].urls.full);
     })
     .catch(error => {
         console.log(error)
