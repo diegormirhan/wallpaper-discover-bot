@@ -11,7 +11,11 @@ const options = {
     },
     params: {
       count: 5,
-      orientation: 'landscape'
+      orientation: 'landscape',
+      w: 1920,
+      h: Math.floor(1920 * (9 / 16)),
+      fit: 'crop',
+      crop: 'top'
     }
   };
 
