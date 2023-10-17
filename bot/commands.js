@@ -2,8 +2,8 @@
 const { bot } = require('./telegram');
 
 // Import the unsplash api requests
-const { landscapeRandom } = require('../api/landscape-random');
-const { portraitRandom } = require('../api/portrait-random');
+const { landscapeRandomReq } = require('../api/landscape-random');
+const { portraitRandomReq } = require('../api/portrait-random');
 const { queryOptions } = require('../api/query-options');
 const { querySearch } = require('../api/query-search');
 
@@ -31,15 +31,14 @@ bot.onText(/\/help/, function helpCommand(msg) {
 // Create a /portrait-random command
 bot.onText(/\/portrait_random/, function portraitRandomCommand(msg) {
     const chatId = msg.chat.id
-    bot.sendMessage(chatId, 'Under development...')
-    //portraitRandom(bot, chatId)
+    portraitRandomReq(bot, chatId)
 })
 
 // Create a /landscape-random command
 bot.onText(/\/landscape_random/, function landscapeRandomCommand(msg) {
     const chatId = msg.chat.id
     bot.sendMessage(chatId, 'Under development...')
-    // landscapeRandom(bot, chatId)
+    landscapeRandomReq(bot, chatId)
 })
 
 // Create a /query-options command
