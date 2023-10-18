@@ -11,17 +11,18 @@ const options = {
       'apikey': `${acess_key}`
     },
     params: {
-      'resolutions': '1080x1920',
-      'sorting': 'random'
+      'resolutions': '1920x1080',
+      'sorting': 'random',
+      'q': '+city+night'
     }
   };
 
 
 axios.get(apiUrl, options)
     .then(response => {
-        console.log(Object.values(response.data.data).slice(0, 5));
         const medias = []
         const jsonResponse = Object.values(response.data.data).slice(0, 5);
+        console.log(jsonResponse);
         jsonResponse.forEach(media => {
           medias.push({
             type: 'photo',
