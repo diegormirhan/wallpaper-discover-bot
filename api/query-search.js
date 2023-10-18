@@ -4,21 +4,25 @@ const axios = require('axios');
 const token = process.env.WALLHAVEN_TOKEN
 const apiUrl = 'https://wallhaven.cc/api/v1/search'
 
-const orientation = ''
-const query = ''
 
-const options = {
-    method: 'GET',
-    headers: {
-        'Accept': 'application/json',
-        'Accept-Version': 'v1',
-        'apikey': token
-    },
-    params: {
-        'sorting': 'random',
-        'resolutions': orientation,
-        'q': query
+const apiRequest = async (orientation, query) => {
+    const options = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Accept-Version': 'v1',
+            'apikey': token
+        },
+        params: {
+            'sorting': 'random',
+            'resolutions': orientation,
+            'q': query
+        }
     }
+
+    const response = await axios.request(apiUrl, options)
+    return 
+
 }
 
 const querySearch = async (bot, chatId) => {
@@ -36,10 +40,11 @@ const querySearch = async (bot, chatId) => {
         }
 
         await bot.sendMessage(chatId, 'Choose the orientation below:', opts)
-
+            const data = ''
         bot.on('callback_query', (callbackQuery) => {
             const msg = callbackQuery.message;
-            orientation  = callbackQuery.data;
+            data  = callbackQuery.data;
+            console.log(data)
 
             bot.answerCallbackQuery(callbackQuery.id);
             bot.sendMessage(chatId, '*Type the query you want to search*', {parse_mode: 'Markdown'});
@@ -47,10 +52,7 @@ const querySearch = async (bot, chatId) => {
 
         await bot.once('message', (msg) => {
             const searchReq = msg.text;
-            query = searchReq
-
-            const response = axios.request(apiUrl, options)
-            const jsonResponse = Object.values(response.data.data).slice(0, 5);
+            const jsonResponse = new apiRequest(data, searchReq)
             const medias = []
 
             jsonResponse.forEach(media => {
