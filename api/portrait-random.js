@@ -18,16 +18,21 @@ const options = {
 };
 
 const portraitRandomReq = async (bot, chatId) => {
-    const response = await axios.request(apiUrl, options);
-    const jsonResponse = Object.values(response.data.data).slice(0, 5)
-    const medias = []
-    jsonResponse.forEach(media => {
-        medias.push({
-            type: 'photo',
-            media: media.path
+    try {
+        bot.sendMessage(chatId, 'Processing...')
+        const response = await axios.request(apiUrl, options);
+        const jsonResponse = Object.values(response.data.data).slice(0, 5)
+        const medias = []
+        jsonResponse.forEach(media => {
+            medias.push({
+                type: 'photo',
+                media: media.path
+            })
         })
-    })
-    bot.sendMediaGroup(chatId, medias)
+        bot.sendMediaGroup(chatId, medias)        
+    } catch (error) {
+        console.log('Error:', error)
+    }
 }
 
 module.exports = {
