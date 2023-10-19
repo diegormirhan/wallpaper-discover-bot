@@ -30,7 +30,6 @@ bot.onText(/\/query_option/, queryOptionsCommand)
 bot.onText(/\/query_search/, querySearchCommand)
 bot.onText(/\/update/, updateCommand)
 
-
 // Functions to create commands
 
 // --- /start command ---
@@ -89,7 +88,6 @@ function queryOptionsCommand(msg) {
 // --- /query_search command ---
 function querySearchCommand(msg) {
     const chatId = msg.chat.id
-    bot.sendMessage(chatId, 'Under development...')
     querySearch(bot, chatId)
 }
 
@@ -105,11 +103,10 @@ function updateCommand(msg) {
     chatUpdate(bot, chatId);
 }
 
-
-// Callback function for the update events
 bot.on('callback_query', (callbackQuery) => {
     const msg = callbackQuery.message;
     const data = callbackQuery.data;
+    console.log(data)
     bot.answerCallbackQuery(callbackQuery.id);
     if(commandHandlers[data]) {
         commandHandlers[data](bot, msg.chat.id);
