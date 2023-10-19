@@ -3,6 +3,7 @@ const axios = require('axios');
 
 const token = process.env.WALLHAVEN_TOKEN
 const apiUrl = 'https://wallhaven.cc/api/v1/search'
+let currentCallbackListener = null;
 
 
 const apiRequest = async (orientation, query) => {
@@ -21,7 +22,7 @@ const apiRequest = async (orientation, query) => {
     }
 
     const response = await axios.request(apiUrl, options)
-    return 
+    return Object.values(response.data.data).slice(0, 5)
 
 }
 
@@ -32,43 +33,51 @@ const querySearch = async (bot, chatId) => {
             reply_markup: {
                 inline_keyboard: [
                     [
-                        { text: 'Landscape', callback_data: '1920x1080'},
-                        { text: 'Portrait', callback_data: '1080x1920'}
+                        { text: 'Landscape', callback_data: '1920x1080' },
+                        { text: 'Portrait', callback_data: '1080x1920' }
                     ]
                 ]
             }
         }
 
-        await bot.sendMessage(chatId, 'Choose the orientation below:', opts)
-            const data = ''
-        bot.on('callback_query', (callbackQuery) => {
-            const msg = callbackQuery.message;
-            data  = callbackQuery.data;
-            console.log(data)
+        bot.sendMessage(chatId, 'Choose the orientation below:', opts)
 
-            bot.answerCallbackQuery(callbackQuery.id);
-            bot.sendMessage(chatId, '*Type the query you want to search*', {parse_mode: 'Markdown'});
-        })
+        if (currentCallbackListener) {
+            bot.removeListener('callback_query', currentCallbackListener);
+        }
+        
 
-        await bot.once('message', (msg) => {
-            const searchReq = msg.text;
-            const jsonResponse = new apiRequest(data, searchReq)
-            const medias = []
+        currentCallbackListener = (callbackQuery) => {
+            const data = callbackQuery.data;
 
-            jsonResponse.forEach(media => {
-                medias.push({
-                    type: 'photo',
-                    media: media.path
+            if (data === '1920x1080' || data === '1080x1920') {
+                userResponse(data);
+            }
+        }
+        bot.on('callback_query', currentCallbackListener)
+
+        const userResponse = (data) => {
+            bot.sendMessage(chatId, 'Enter the query you want to search...')
+            bot.once('message', async (msg) => {
+                const searchReq = msg.text;
+                const jsonResponse = await apiRequest(data, searchReq)
+                console.log(jsonResponse)
+                const medias = []
+                jsonResponse.forEach(media => {
+                    medias.push({
+                        type: 'photo',
+                        media: media.path
+                    })
                 })
-            })
-            bot.sendMediaGroup(chatId, medias)
+                bot.sendMediaGroup(chatId, medias)
 
-        })
-    } catch (error) {
-        console.log('Error:', error)
+            })
+        }
+        } catch (error) {
+            console.log('Error:', error)
+        }
     }
-}
 
 module.exports = {
-    querySearch
-}
+        querySearch
+    }
