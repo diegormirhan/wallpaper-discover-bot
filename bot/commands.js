@@ -81,8 +81,7 @@ function landscapeRandomCommand(msg) {
 // --- /query_options command ---
 function queryOptionsCommand(msg) {
     const chatId = msg.chat.id
-    bot.sendMessage(chatId, 'Under development...')
-    // queryOptions(bot, chatId)
+    queryOptions(bot, chatId)
 }
 
 // --- /query_search command ---
