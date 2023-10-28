@@ -11,9 +11,9 @@ const options = {
       'apikey': `${acess_key}`
     },
     params: {
-      'resolutions': '1920x1080',
-      'sorting': 'random',
-      'q': '+city+night'
+      'resolutions': '1080x1920',
+      'sorting': 'toplist',
+      'q': 'sky'
     }
   };
 
