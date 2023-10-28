@@ -1,6 +1,7 @@
 # Wallpaper Discover Bot 🖼️
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/bGxhLT?referralCode=XK46yN)
 
-Discover stunning wallpapers directly on Telegram with the Wallpaper Discover Bot. Powered by Unsplash, this bot provides high-quality backgrounds to refresh your device's look. Simply interact with the bot, pick a theme (e.g., "nature", "urban", "minimalist"), and receive a curated selection in seconds.
+Discover stunning wallpapers directly on Telegram with the Wallpaper Discover Bot. Powered by WallHaven, this bot provides high-quality backgrounds to refresh your device's look. Simply interact with the bot, pick a theme (e.g., "nature", "urban", "minimalist"), and receive a curated selection in seconds.
 
 ## Features:
 - Direct access to Unsplash's vast library.
@@ -33,7 +34,7 @@ Ensure you have Node.js installed on your machine.
 
 4. Create a `.env` file in the root directory and add the following environment variables:
    ```
-   UNSPLASH_ACESS_KEY=YOUR_UNSPLASH_ACCESS_KEY
+   WALLHAVEN_TOKEN=YOUR_UNSPLASH_ACCESS_KEY
    TELEGRAM_API=YOUR_TELEGRAM_API_KEY
    DATABASE_URL=YOUR_DATABASE_URL
    ADMIN_ID=YOUR_ADMIN_ID
@@ -61,9 +62,7 @@ Ensure you have Node.js installed on your machine.
 
 ## Dev Dependencies
 
-- chai: Assertion library for testing.
 - jest: Testing framework.
-- mocha: JavaScript test framework.
 - nodemon: Monitor for changes in source and automatically restart your server.
 
 ## License
