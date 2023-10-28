@@ -33,8 +33,8 @@ const querySearch = async (bot, chatId) => {
             reply_markup: {
                 inline_keyboard: [
                     [
-                        { text: 'Landscape', callback_data: '1920x1080' },
-                        { text: 'Portrait', callback_data: '1080x1920' }
+                        { text: 'Landscape', callback_data: '1920x1080-' },
+                        { text: 'Portrait', callback_data: '1080x1920-' }
                     ]
                 ]
             }
@@ -50,7 +50,7 @@ const querySearch = async (bot, chatId) => {
         currentCallbackListener = (callbackQuery) => {
             const data = callbackQuery.data;
 
-            if (data === '1920x1080' || data === '1080x1920') {
+            if (data === '1920x1080-' || data === '1080x1920-') {
                 userResponse(data);
             }
         }
@@ -60,8 +60,8 @@ const querySearch = async (bot, chatId) => {
             bot.sendMessage(chatId, 'Enter the query you want to search...')
             bot.once('message', async (msg) => {
                 const searchReq = msg.text;
-                const jsonResponse = await apiRequest(data, searchReq)
-                console.log(jsonResponse)
+                const jsonResponse = await apiRequest(data.slice(0, -1), searchReq)
+                console.log('here', jsonResponse)
                 const medias = []
                 jsonResponse.forEach(media => {
                     medias.push({
